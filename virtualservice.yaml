@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: wordpress
+spec:
+  gateways:
+  - wordpress/ingressgateway
+  hosts:
+  - www.xiaomo.io
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: nginx.wordpress.svc.cluster.local
+        port:
+          number: 80
