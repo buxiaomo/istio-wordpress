@@ -98,6 +98,10 @@ data:
             index index.php index.html index.htm;
             root  /var/www/html;
 
+            location / {
+                try_files $uri $uri/ /index.php?$args;
+            }
+
             location = /favicon.ico {
                 log_not_found off;
                 access_log off;
@@ -109,10 +113,6 @@ data:
                 access_log off;
             }
 
-            location / {
-                try_files $uri $uri/ /index.php?$args;
-            }
-    
             location ~ \.php$ {
                 include fastcgi_params;
                 fastcgi_intercept_errors on;
@@ -123,6 +123,14 @@ data:
             location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
                 expires max;
                 log_not_found off;
+            }
+
+            location ~ /\. {
+                deny all;
+            }
+
+            location ~* /(?:uploads|files)/.*\.php$ {
+                deny all;
             }
         }
     }

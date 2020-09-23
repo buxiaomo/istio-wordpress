@@ -1,0 +1,21 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1beta1
+metadata:
+  name: blog
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    # traefik.ingress.kubernetes.io/router.tls: "true"
+    # traefik.ingress.kubernetes.io/redirect-entry-point: https
+spec:
+  # tls:
+  #   - hosts:
+  #     - www.xiaomo.io
+  #     secretName: www-xiaomo-io
+  rules:
+  - host: www.xiaomo.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx.blog.svc.cluster.local
+          servicePort: 80
