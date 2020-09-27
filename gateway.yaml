@@ -6,15 +6,15 @@ spec:
   selector:
     istio: ingressgateway
   servers:
-  # - port:
-  #     number: 443
-  #     name: https
-  #     protocol: HTTPS
-  #   tls:
-  #     mode: SIMPLE
-  #     credentialName: www-xiaomo-io
-  #   hosts:
-  #   - "www.xiaomo.io"
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: www-xiaomo-io
+    hosts:
+    - "www.xiaomo.io"
   - port:
       number: 80
       name: http
